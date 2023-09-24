@@ -7,8 +7,8 @@ const END_POINTS = {
   trending: '/trending/movie/day',
   movieById: '/movie',
   movieCast: '/credits',
-  movieReview: '/credits',
-  searchMovie: '/search/search-movies',
+  movieReview: '/reviews',
+  searchMovie: '/search/movie',
 };
 const params = {
   api_key: KEY,
@@ -33,5 +33,22 @@ export const getMovieCast = async movieId => {
       params,
     }
   );
+  return responce.data;
+};
+
+export const getMovieReview = async movieId => {
+  const responce = await axios.get(
+    `${END_POINTS.movieById}/${movieId}${END_POINTS.movieReview}`,
+    {
+      params,
+    }
+  );
+  return responce.data;
+};
+
+export const getSearchMovie = async () => {
+  const responce = await axios.get(`${END_POINTS.searchMovie}`, {
+    params,
+  });
   return responce.data;
 };
