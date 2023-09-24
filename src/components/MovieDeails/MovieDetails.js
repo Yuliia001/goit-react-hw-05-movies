@@ -17,10 +17,11 @@ export const MovieDetails = ({ movieDetails }) => {
         />
         <h2>{movieDetails.title}</h2>
         <h2>User Score:</h2>
-        <p>{movieDetails.popularity}%</p>
+        <p>{Math.floor(movieDetails.popularity)}%</p>
         <h2>Overview</h2>
         <p>{movieDetails.overview}%</p>
         <h2>Genres</h2>
+        <p>{movieDetails.genres.map(({ name }) => name).join(', ')}</p>
       </div>
     </div>
   );

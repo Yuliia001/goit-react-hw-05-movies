@@ -6,10 +6,10 @@ import { useParams } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 
 export default function MovieDetailsPage() {
-  const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { movieId } = useParams();
 
   useEffect(() => {
     async function getMovieDetails() {
@@ -24,13 +24,15 @@ export default function MovieDetailsPage() {
         setIsLoading(false);
       }
     }
-    getMovieDetails();
-  }, [movieId, movieDetails]);
+    if (movieId) {
+      getMovieDetails();
+    }
+  }, [movieId]);
 
   return (
     <div>
       {isLoading && <Loader />}
-      {!error && <MovieDetails movieDetails={movieDetails} />}
+      {!error && movieDetails && <MovieDetails movieDetails={movieDetails} />}
       {error && <Error>{error}</Error>}
     </div>
   );

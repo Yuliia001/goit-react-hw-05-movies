@@ -5,7 +5,7 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const KEY = '9c0376cabd87eccbc4cd2b8625042663';
 const END_POINTS = {
   trending: '/trending/movie/day',
-  movieById: '/movies',
+  movieById: '/movie',
   searchMovie: '/search/search-movies',
 };
 const params = {
