@@ -6,6 +6,8 @@ const KEY = '9c0376cabd87eccbc4cd2b8625042663';
 const END_POINTS = {
   trending: '/trending/movie/day',
   movieById: '/movie',
+  movieCast: '/credits',
+  movieReview: '/credits',
   searchMovie: '/search/search-movies',
 };
 const params = {
@@ -21,5 +23,15 @@ export const getMovieById = async movieId => {
   const responce = await axios.get(`${END_POINTS.movieById}/${movieId}`, {
     params,
   });
+  return responce.data;
+};
+
+export const getMovieCast = async movieId => {
+  const responce = await axios.get(
+    `${END_POINTS.movieById}/${movieId}${END_POINTS.movieCast}`,
+    {
+      params,
+    }
+  );
   return responce.data;
 };

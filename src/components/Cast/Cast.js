@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
 import { Error } from 'components/Error/Error.styled';
 import { Loader } from 'components/Loader/Loader';
-import { MovieDetails } from 'components/MovieDetails/MovieDetails';
+import { getMovieCast } from 'services/api';
 import { useParams } from 'react-router-dom';
-import { getMovieById } from 'services/api';
+import { CastList } from './CastList';
 
-export default function MovieDetailsPage() {
-  const [movieDetails, setMovieDetails] = useState(null);
+export default function Cast() {
+  const [movieCast, setMovieCast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
-    async function getMovieDetails() {
+    async function getCastMovie() {
       try {
         setIsLoading(true);
         setError(null);
-        const movieData = await getMovieById(movieId);
-        setMovieDetails(movieData);
+        const dataCast = await getMovieCast(movieId);
+        setMovieCast(dataCast);
       } catch (error) {
         setError('Oops! Something went wrong. Please reload the page.');
       } finally {
@@ -25,14 +25,14 @@ export default function MovieDetailsPage() {
       }
     }
     if (movieId) {
-      getMovieDetails();
+      getCastMovie();
     }
   }, [movieId]);
 
   return (
     <div>
       {isLoading && <Loader />}
-      {!error && movieDetails && <MovieDetails movieDetails={movieDetails} />}
+      {movieCast && <CastList movieCast={movieCast} />}
       {error && <Error>{error}</Error>}
     </div>
   );
