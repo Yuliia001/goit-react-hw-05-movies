@@ -3,11 +3,14 @@ import { Error } from 'components/Error/Error.styled';
 import { Loader } from 'components/Loader/Loader';
 import { getSearchMovie } from 'services/api';
 import { useSearchParams } from 'react-router-dom';
+import { MoviesList } from 'components/MoviesList/MoviesList';
+import { SearchBar } from 'components/SearchBar/SearchBar';
 
 export default function MoviePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [movies, setMovies] = useState([]);
 
   const query = searchParams.get('query');
 
@@ -18,7 +21,8 @@ export default function MoviePage() {
       try {
         setIsLoading(true);
         setError(null);
-        await getSearchMovie(query);
+        const searchQuery = await getSearchMovie(query);
+        setMovies(searchQuery);
       } catch (error) {
         setError('Oops! Something went wrong. Please reload the page.');
       } finally {
@@ -28,19 +32,12 @@ export default function MoviePage() {
     searchMovie();
   }, [query]);
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    const value = evt.target.query.value;
-
-    setSearchParams({ query: value });
-  };
-
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="query" placeholder="Search for movies" />
-        <button type="submit">Search</button>
-      </form>
+      <SearchBar setSearchParams={setSearchParams} />
+      {movies.length > 0 && (
+        <MoviesList title="Search Results" movies={movies} />
+      )}
       {isLoading && <Loader />}
       {error && <Error>{error}</Error>}
     </div>

@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 20px 20px;
+  margin-bottom: 24px;
 `;
 
 export const WrapperInfo = styled.div`
@@ -22,4 +23,17 @@ export const WrapperInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 20px 20px;
+  gap: 20px;
+`;
+export const ListInfo = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+export const StyledLink = styled(NavLink)`
+  font-size: 20px;
+  color: #00080d;
 `;
