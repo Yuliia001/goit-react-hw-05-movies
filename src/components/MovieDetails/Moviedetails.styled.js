@@ -8,6 +8,7 @@ export const BackLink = styled(NavLink)`
   border-radius: 4px;
   padding: 10px 22px;
   background-color: #ebeff2;
+  max-width: 120px;
 `;
 
 export const Wrapper = styled.div`
