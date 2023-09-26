@@ -5,7 +5,7 @@ import { getMovieReview } from 'services/api';
 import { useParams } from 'react-router-dom';
 import { ReviewsList } from './ReviewsList';
 
-export const Reviews = () => {
+export default function Reviews() {
   const [movieReview, setMovieReview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -39,4 +39,4 @@ export const Reviews = () => {
       {error && <Error>{error}</Error>}
     </div>
   );
-};
+}

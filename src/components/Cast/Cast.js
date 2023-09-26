@@ -5,7 +5,7 @@ import { getMovieCast } from 'services/api';
 import { useParams } from 'react-router-dom';
 import { CastList } from './CastList';
 
-export const Cast = () => {
+export default function Cast() {
   const [movieCast, setMovieCast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -36,4 +36,4 @@ export const Cast = () => {
       {error && <Error>{error}</Error>}
     </div>
   );
-};
+}

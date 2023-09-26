@@ -13,8 +13,9 @@ export const BackLink = styled(NavLink)`
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
-  padding: 20px 20px;
+  // justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin-bottom: 24px;
 `;
 

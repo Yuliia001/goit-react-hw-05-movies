@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { getPoster } from 'services/getPoster';
 import {
@@ -35,23 +35,15 @@ export const MovieDetails = ({ movieDetails }) => {
       <h2>Additional Information</h2>
       <ListInfo>
         <li>
-          <StyledLink
-            to={`/movies/${movieDetails.id}/cast`}
-            state={{ from: location }}
-          >
-            Cast
-          </StyledLink>
+          <StyledLink to={'cast'}>Cast</StyledLink>
         </li>
         <li>
-          <StyledLink
-            to={`/movies/${movieDetails.id}/reviews`}
-            state={{ from: location }}
-          >
-            Reviews
-          </StyledLink>
+          <StyledLink to={'reviews'}>Reviews</StyledLink>
         </li>
       </ListInfo>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
